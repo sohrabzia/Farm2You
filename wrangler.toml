@@ -1,0 +1,16 @@
+name = "farm2you"
+compatibility_date = "2024-12-01"
+pages_build_output_dir = "dist"
+
+# After running:
+#   npx wrangler d1 create farm2you-db
+# paste the database_id below.
+
+[[d1_databases]]
+binding = "DB"
+database_name = "farm2you-db"
+database_id = "REPLACE_WITH_D1_DATABASE_ID"
+
+[vars]
+# Override in Cloudflare dashboard or via `wrangler pages secret put SESSION_SECRET`.
+# In local dev we fall back to "dev-only-not-secure" via env handling.
