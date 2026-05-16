@@ -1,6 +1,6 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
-import { ArrowRight, Truck, ShieldCheck, Leaf, Phone, Sprout, Stethoscope, Tractor } from 'lucide-react'
+import { ArrowRight, ArrowLeft, Truck, ShieldCheck, Leaf, Phone, Sprout, Stethoscope, Tractor } from 'lucide-react'
 import { api } from '../../lib/api.js'
 import ProductCard from '../../components/shop/ProductCard.jsx'
 import { useI18n } from '../../lib/i18n.jsx'
@@ -37,41 +37,117 @@ export default function Home() {
     <>
       {/* HERO */}
       <section className="relative bg-cream grain overflow-hidden">
-        <div className="max-w-[1400px] mx-auto px-4 md:px-6 grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 py-10 md:py-16 lg:py-20 items-center">
-          <div className="lg:col-span-6 order-2 lg:order-1">
-            <span className="inline-flex items-center gap-2 font-mono text-[11px] tracking-[0.22em] text-clay">
-              <span className="w-1.5 h-1.5 bg-clay" /> {t('hero.eyebrow')}
-            </span>
-            <h1 className={`mt-4 font-display leading-[0.92] tracking-tightest ${isUrdu ? 'text-4xl md:text-5xl lg:text-6xl leading-[1.5]' : 'text-5xl md:text-7xl lg:text-[5.5rem]'}`}>
-              {t('hero.title.1')}
-              <br />
-              <span className={isUrdu ? '' : 'italic font-light'}>{t('hero.title.2')}</span>
-            </h1>
-            <p className={`mt-6 text-ink/75 max-w-xl leading-relaxed ${isUrdu ? 'text-lg md:text-xl' : 'text-base md:text-lg'}`}>
-              {t('hero.subtitle')}
-            </p>
-            <div className="mt-8 flex flex-wrap gap-3">
-              <Link to="/shop" className="inline-flex items-center gap-2 bg-ink text-bone px-5 py-3.5 cursor-pointer hover:bg-clay transition-colors">
-                {t('hero.cta.shop')} <ArrowRight size={16} />
-              </Link>
-              <a href="tel:0800327628" className="inline-flex items-center gap-2 border border-ink/40 px-5 py-3.5 cursor-pointer hover:bg-ink hover:text-bone transition-colors">
-                <Phone size={15} /> {t('hero.cta.call')}
-              </a>
-            </div>
-            <div className="mt-10 grid grid-cols-3 gap-3 max-w-lg">
-              <Trust Icon={Truck} label={t('hero.trust.same_day')} />
-              <Trust Icon={ShieldCheck} label={t('hero.trust.cod')} />
-              <Trust Icon={Leaf} label={t('hero.trust.verified')} />
-            </div>
-          </div>
+        <div className="max-w-[1400px] mx-auto px-4 md:px-6 lg:min-h-[calc(100svh-10rem)] flex items-center">
+          <div className="w-full grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-10 py-6 md:py-8 items-center">
+            <div className="lg:col-span-7 order-2 lg:order-1">
+              <h1 className={`font-display tracking-tightest leading-[0.9] ${isUrdu ? 'text-4xl md:text-5xl lg:text-6xl !leading-[1.25]' : 'text-5xl md:text-7xl lg:text-[5.5rem]'}`}>
+                {t('hero.title.1')}
+                <br />
+                <span className="relative inline-block">
+                  <span className={isUrdu ? '' : 'italic font-light'}>{t('hero.title.2')}</span>
+                  <svg
+                    className="absolute -bottom-2 left-0 w-full pointer-events-none"
+                    viewBox="0 0 600 18"
+                    preserveAspectRatio="none"
+                    aria-hidden="true"
+                  >
+                    <path d="M2 14 C 150 2, 450 2, 598 14" stroke="#C8542A" strokeWidth="3" fill="none" />
+                  </svg>
+                </span>
+              </h1>
 
-          <div className="lg:col-span-6 order-1 lg:order-2">
-            <div className="grid grid-cols-6 grid-rows-6 gap-3 h-[420px] md:h-[520px]">
-              <Tile className="col-span-4 row-span-4" img="https://images.unsplash.com/photo-1542838132-92c53300491e?w=1200&q=80" tag="Vegetables" />
-              <Tile className="col-span-2 row-span-3" img="https://images.unsplash.com/photo-1591073113125-e46713c829ed?w=900&q=80" tag="Mango Sindhri" />
-              <Tile className="col-span-2 row-span-3" img="https://images.unsplash.com/photo-1563636619-e9143da7973b?w=900&q=80" tag="Fresh Milk" />
-              <Tile className="col-span-3 row-span-2" img="https://images.unsplash.com/photo-1586201375761-83865001e31c?w=900&q=80" tag="Atta · Daal" />
-              <Tile className="col-span-3 row-span-2" img="https://images.unsplash.com/photo-1611080626919-7cf5a9dbab12?w=900&q=80" tag="Kinnow" />
+              <p className={`mt-5 md:mt-6 text-ink/75 max-w-xl leading-relaxed ${isUrdu ? 'text-base md:text-lg' : 'text-base md:text-[17px]'}`}>
+                {t('hero.subtitle')}
+              </p>
+
+              <div className="mt-6 flex flex-wrap gap-3">
+                <Link
+                  to="/shop"
+                  className="group inline-flex items-center gap-2 bg-ink text-bone px-5 py-3 cursor-pointer hover:bg-clay transition-colors"
+                >
+                  {t('hero.cta.shop')}
+                  <ArrowRight size={16} className="group-hover:translate-x-0.5 transition-transform" />
+                </Link>
+                <a
+                  href="tel:0800327628"
+                  className="inline-flex items-center gap-2 border border-ink/40 px-5 py-3 cursor-pointer hover:bg-ink hover:text-bone transition-colors"
+                >
+                  <Phone size={15} /> {t('hero.cta.call')}
+                </a>
+              </div>
+
+              {/* inline trust strip */}
+              <div className="mt-7 pt-5 border-t border-ink/15 flex flex-wrap items-center gap-x-5 gap-y-2 text-sm text-ink/75">
+                <span className="inline-flex items-center gap-2">
+                  <Truck size={14} className="text-clay" /> {t('hero.trust.same_day')}
+                </span>
+                <span className="hidden sm:inline-block w-px h-3 bg-ink/20" />
+                <span className="inline-flex items-center gap-2">
+                  <ShieldCheck size={14} className="text-clay" /> {t('hero.trust.cod')}
+                </span>
+                <span className="hidden sm:inline-block w-px h-3 bg-ink/20" />
+                <span className="inline-flex items-center gap-2">
+                  <Leaf size={14} className="text-clay" /> {t('hero.trust.verified')}
+                </span>
+              </div>
+            </div>
+
+            {/* visual editorial column */}
+            <div className="lg:col-span-5 order-1 lg:order-2">
+              <div className="relative">
+                {/* Pick of the day */}
+                <div className="relative aspect-[4/5] lg:aspect-[5/4.4] overflow-hidden hairline border border-ink/15">
+                  <img
+                    src="https://images.unsplash.com/photo-1592924357228-91a4daadcfea?w=1200&q=80"
+                    alt={t('hero.pick.title')}
+                    loading="eager"
+                    className="absolute inset-0 w-full h-full object-cover"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-ink/95 via-ink/35 to-transparent" />
+                  <div className="absolute top-3 left-3 right-3 flex items-start justify-between">
+                    <span className="bg-bone/90 text-ink px-2 py-0.5 font-mono text-[10px] tracking-[0.22em]">
+                      {t('hero.pick.tag')}
+                    </span>
+                    <span className="bg-clay text-bone px-2 py-0.5 font-mono text-[10px] tracking-[0.22em]">
+                      {t('hero.pick.fresh')}
+                    </span>
+                  </div>
+                  <div className="absolute inset-x-0 bottom-0 p-4 text-bone">
+                    <p className="font-mono text-[10px] tracking-[0.22em] opacity-85">
+                      {t('hero.pick.meta')}
+                    </p>
+                    <p className="font-display text-xl md:text-2xl tracking-tightest mt-1 leading-tight">
+                      {t('hero.pick.title')}
+                    </p>
+                    <div className="mt-3 flex items-end justify-between">
+                      <p className="font-mono text-sm">{t('hero.pick.price')}</p>
+                      <Link
+                        to="/shop?category=vegetables"
+                        className="group inline-flex items-center gap-1.5 text-xs font-mono tracking-[0.18em] hover:text-ochre transition-colors"
+                      >
+                        {t('hero.pick.cta')}
+                        <ArrowRight size={12} className="group-hover:translate-x-0.5 transition-transform" />
+                      </Link>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Stat band */}
+                <div className="mt-2.5 grid grid-cols-2 hairline border border-ink/15 bg-bone">
+                  <div className="p-3 md:p-4 border-r border-ink/15">
+                    <p className="font-mono text-[10px] tracking-[0.22em] text-ink/60">
+                      {t('hero.stat.payout')}
+                    </p>
+                    <p className="font-display text-2xl md:text-3xl tracking-tightest mt-0.5">+87%</p>
+                  </div>
+                  <div className="p-3 md:p-4">
+                    <p className="font-mono text-[10px] tracking-[0.22em] text-ink/60">
+                      {t('hero.stat.save')}
+                    </p>
+                    <p className="font-display text-2xl md:text-3xl tracking-tightest mt-0.5 text-clay">−32%</p>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -108,7 +184,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* FEATURED PRODUCTS */}
+      {/* FEATURED PRODUCTS — CAROUSEL */}
       <section className="py-10 md:py-16 bg-cream">
         <div className="max-w-[1400px] mx-auto px-4 md:px-6">
           <div className="flex items-end justify-between gap-4 mb-8">
@@ -121,13 +197,13 @@ export default function Home() {
             </Link>
           </div>
           {loading ? (
-            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-              {Array.from({ length: 8 }).map((_, i) => <div key={i} className="aspect-[4/5] bg-bone animate-pulse" />)}
+            <div className="flex gap-4 overflow-hidden">
+              {Array.from({ length: 4 }).map((_, i) => (
+                <div key={i} className="shrink-0 w-[70%] sm:w-[45%] md:w-[33%] lg:w-[24%] aspect-[4/5] bg-bone animate-pulse" />
+              ))}
             </div>
           ) : (
-            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-              {products.slice(0, 8).map((p) => <ProductCard key={p.id} product={p} />)}
-            </div>
+            <ProductCarousel products={products} />
           )}
         </div>
       </section>
@@ -170,24 +246,69 @@ export default function Home() {
   )
 }
 
-function Trust({ Icon, label }) {
+function ProductCarousel({ products }) {
+  const trackRef = useRef(null)
+  const [paused, setPaused] = useState(false)
+
+  const scrollByCard = (dir) => {
+    const el = trackRef.current
+    if (!el) return
+    const first = el.firstElementChild
+    const step = (first?.getBoundingClientRect().width || 280) + 16
+    const max = el.scrollWidth - el.clientWidth - 4
+    let next = el.scrollLeft + dir * step
+    if (dir > 0 && el.scrollLeft >= max) next = 0
+    else if (dir < 0 && el.scrollLeft <= 4) next = max
+    el.scrollTo({ left: next, behavior: 'smooth' })
+  }
+
+  useEffect(() => {
+    if (paused || !products?.length) return
+    const id = setInterval(() => scrollByCard(1), 3500)
+    return () => clearInterval(id)
+  }, [paused, products?.length])
+
+  if (!products?.length) return null
+
   return (
-    <div className="flex items-start gap-2">
-      <Icon size={16} className="text-clay mt-0.5 shrink-0" />
-      <span className="text-xs text-ink/75 leading-tight">{label}</span>
+    <div
+      className="relative group"
+      onMouseEnter={() => setPaused(true)}
+      onMouseLeave={() => setPaused(false)}
+    >
+      <div
+        ref={trackRef}
+        className="flex gap-4 overflow-x-auto snap-x snap-mandatory scroll-smooth pb-2 -mx-1 px-1 scrollbar-none"
+        style={{ scrollbarWidth: 'none' }}
+      >
+        {products.map((p) => (
+          <div
+            key={p.id}
+            className="snap-start shrink-0 w-[72%] sm:w-[46%] md:w-[32%] lg:w-[23.5%]"
+          >
+            <ProductCard product={p} />
+          </div>
+        ))}
+      </div>
+
+      <button
+        onClick={() => scrollByCard(-1)}
+        aria-label="Previous"
+        className="hidden md:grid place-items-center absolute top-1/2 -translate-y-1/2 -left-3 lg:-left-5 w-11 h-11 bg-bone text-ink border border-ink/20 hover:bg-ink hover:text-bone transition-colors cursor-pointer opacity-0 group-hover:opacity-100 focus:opacity-100"
+      >
+        <ArrowLeft size={18} />
+      </button>
+      <button
+        onClick={() => scrollByCard(1)}
+        aria-label="Next"
+        className="hidden md:grid place-items-center absolute top-1/2 -translate-y-1/2 -right-3 lg:-right-5 w-11 h-11 bg-bone text-ink border border-ink/20 hover:bg-ink hover:text-bone transition-colors cursor-pointer opacity-0 group-hover:opacity-100 focus:opacity-100"
+      >
+        <ArrowRight size={18} />
+      </button>
     </div>
   )
 }
-function Tile({ className = '', img, tag }) {
-  return (
-    <div className={`relative overflow-hidden hairline border border-ink/15 ${className}`}>
-      <img src={img} alt={tag} loading="lazy" className="absolute inset-0 w-full h-full object-cover" />
-      <span className="absolute bottom-2 left-2 bg-bone/90 px-2 py-1 font-mono text-[10px] tracking-[0.2em] uppercase">
-        {tag}
-      </span>
-    </div>
-  )
-}
+
 function Pillar({ Icon, title, desc }) {
   return (
     <div className="flex gap-4">

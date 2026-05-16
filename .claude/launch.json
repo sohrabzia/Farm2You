@@ -5,7 +5,15 @@
       "name": "farm2you-vite",
       "runtimeExecutable": "npm",
       "runtimeArgs": ["run", "dev"],
-      "port": 5173
+      "port": 5173,
+      "autoPort": true
+    },
+    {
+      "name": "farm2you-pages",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": ["run", "dev:preview"],
+      "port": 8788,
+      "autoPort": true
     }
   ]
 }

@@ -117,10 +117,9 @@ export default function ShopLayout() {
               <NavLink
                 key={c.slug}
                 to={`/shop?category=${c.slug}`}
-                className="px-3 py-2 text-sm cursor-pointer hover:bg-cream text-ink/70 hover:text-ink flex items-center gap-2"
+                className="px-3 py-2 text-sm cursor-pointer hover:bg-cream text-ink/70 hover:text-ink"
               >
                 {t(c.key)}
-                {!isUrdu && <span className="text-[11px] text-ink/40 font-mono">{c.ur}</span>}
               </NavLink>
             ))}
             <span className="ml-auto flex items-center gap-4 text-xs text-ink/60">
@@ -145,7 +144,7 @@ export default function ShopLayout() {
             <Link to="/shop" className="block py-2 font-display text-2xl tracking-tightest cursor-pointer">{t('nav.all')} →</Link>
             {catKeys.map((c) => (
               <Link key={c.slug} to={`/shop?category=${c.slug}`} className="block py-2 font-display text-2xl tracking-tightest cursor-pointer">
-                {t(c.key)} {!isUrdu && <span className="text-ink/40 text-base ml-2">{c.ur}</span>}
+                {t(c.key)}
               </Link>
             ))}
             <button onClick={() => setLang(lang === 'en' ? 'ur' : 'en')} className="flex items-center gap-2 pt-3 border-t border-ink/10 text-sm cursor-pointer">
@@ -185,12 +184,6 @@ function ShopFooter() {
             Pakistan&rsquo;s farm-to-family marketplace. Order fresh produce, dairy, livestock and
             agri-inputs directly from verified farmers — delivered the same day in Karachi.
           </p>
-          <div className="mt-5 flex items-center gap-2.5">
-            <SocialLink letter="f" label="Facebook" />
-            <SocialLink letter="ig" label="Instagram" />
-            <SocialLink letter="tt" label="TikTok" />
-            <SocialLink letter="yt" label="YouTube" />
-          </div>
         </div>
         <div>
           <h4 className="font-mono text-[11px] tracking-[0.2em] text-bone/50 uppercase">Shop</h4>
@@ -215,19 +208,22 @@ function ShopFooter() {
         </div>
       </div>
       <div className="hairline-t border-bone/10">
-        <div className="max-w-[1400px] mx-auto px-4 md:px-6 h-12 flex items-center justify-between text-xs font-mono tracking-[0.18em] text-bone/50">
+        <div className="max-w-[1400px] mx-auto px-4 md:px-6 min-h-12 py-3 flex flex-wrap items-center justify-between gap-x-4 gap-y-1 text-xs font-mono tracking-[0.18em] text-bone/50">
           <span>© 2026 FARM2YOU PVT LTD</span>
-          <span>v0.2.0 · MADE IN KARACHI</span>
+          <span>
+            v0.2.0 · Created by{' '}
+            <a
+              href="https://sohrabzia.github.io/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-bone/80 hover:text-clay underline-offset-4 hover:underline cursor-pointer"
+            >
+              Soharab
+            </a>
+          </span>
         </div>
       </div>
     </footer>
   )
 }
 
-function SocialLink({ letter, label }) {
-  return (
-    <a href="#" aria-label={label} className="w-9 h-9 grid place-items-center border border-bone/25 hover:bg-clay hover:border-clay cursor-pointer transition-colors font-mono text-[11px] tracking-[0.1em] uppercase">
-      {letter}
-    </a>
-  )
-}

@@ -6,6 +6,7 @@
   "scripts": {
     "dev": "vite",
     "dev:full": "wrangler pages dev --proxy 5173 --port 8788 -- npm run dev",
+    "dev:preview": "sh .claude/scripts/dev-preview.sh",
     "build": "vite build",
     "preview": "vite preview",
     "db:init": "wrangler d1 execute farm2you-db --local --file=migrations/0001_init.sql && wrangler d1 execute farm2you-db --local --file=migrations/0002_seed.sql",

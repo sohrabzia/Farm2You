@@ -62,6 +62,8 @@
   .label {
     @apply font-mono text-[11px] uppercase tracking-[0.2em] text-ink/60;
   }
+  .scrollbar-none::-webkit-scrollbar { display: none; }
+  .scrollbar-none { -ms-overflow-style: none; scrollbar-width: none; }
 }
 
 /* Reveal on intersection */

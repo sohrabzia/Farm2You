@@ -21,7 +21,6 @@ const dict = {
     'nav.signin_signup': 'Sign in / Sign up',
 
     // hero
-    'hero.eyebrow': 'Karachi · Same-day delivery',
     'hero.title.1': 'Taaza sabzi,',
     'hero.title.2': 'seedha kisaan se.',
     'hero.subtitle':
@@ -31,6 +30,14 @@ const dict = {
     'hero.trust.same_day': 'Same-day in Karachi',
     'hero.trust.cod': 'Cash on Delivery',
     'hero.trust.verified': 'Verified farmers',
+    'hero.pick.tag': 'PICK · 01',
+    'hero.pick.fresh': 'FRESH TODAY',
+    'hero.pick.meta': 'PUNJAB · PICKED 06:14 AM',
+    'hero.pick.title': 'Vine-ripe tomatoes',
+    'hero.pick.price': 'PKR 120 / kg',
+    'hero.pick.cta': 'SHOP',
+    'hero.stat.payout': 'FARMER PAYOUT',
+    'hero.stat.save': 'CONSUMER SAVE',
 
     // categories
     'cat.eyebrow': '// CATEGORIES',
@@ -101,7 +108,6 @@ const dict = {
     'nav.cod': 'کیش آن ڈیلیوری',
     'nav.signin_signup': 'سائن اِن / اکاؤنٹ بنائیں',
 
-    'hero.eyebrow': 'کراچی · اسی دن ڈیلیوری',
     'hero.title.1': 'تازہ سبزی،',
     'hero.title.2': 'سیدھا کسان سے۔',
     'hero.subtitle':
@@ -111,6 +117,14 @@ const dict = {
     'hero.trust.same_day': 'کراچی میں اسی دن',
     'hero.trust.cod': 'کیش آن ڈیلیوری',
     'hero.trust.verified': 'تصدیق شدہ کسان',
+    'hero.pick.tag': 'پک · 01',
+    'hero.pick.fresh': 'آج تازہ',
+    'hero.pick.meta': 'پنجاب · صبح 06:14 پر چنا گیا',
+    'hero.pick.title': 'بیل کے پکے ٹماٹر',
+    'hero.pick.price': '120 روپے / کلو',
+    'hero.pick.cta': 'خریدیں',
+    'hero.stat.payout': 'کسان کو ادائیگی',
+    'hero.stat.save': 'صارف کی بچت',
 
     'cat.eyebrow': '// زمرہ جات',
     'cat.title': 'زمرے کے مطابق خریدیں',
