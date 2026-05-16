@@ -9,7 +9,7 @@ pages_build_output_dir = "dist"
 [[d1_databases]]
 binding = "DB"
 database_name = "farm2you-db"
-database_id = "REPLACE_WITH_D1_DATABASE_ID"
+database_id = "232b406c-5d15-4e3a-a0c1-d17503a13816"
 
 [vars]
 # Override in Cloudflare dashboard or via `wrangler pages secret put SESSION_SECRET`.
